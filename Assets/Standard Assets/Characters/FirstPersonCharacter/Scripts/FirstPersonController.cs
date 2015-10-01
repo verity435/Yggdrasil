@@ -253,5 +253,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("tp"))
+            {
+                transform.position = new Vector3(1376.34f, 140f, 693f);
+            }
+
+            if (other.gameObject.CompareTag("PickObject"))
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+                    other.gameObject.SetActive(false);
+
+                    if (other.gameObject.CompareTag("PierreTp"))
+                    {
+                        other.gameObject.SetActive(true);
+                    }
+                }
+            }
+        }
     }
+
 }
